@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Graphics/theme.tres" type="Theme" id=1]
+[ext_resource path="res://Fonts/IndieFlower-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/MenuPause.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/PauseButton.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 144
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 36
+font_data = ExtResource( 2 )
+
+[node name="Pause" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 504, 224 )
+color = Color( 0, 0, 0, 0.282353 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.242
+anchor_right = 0.5
+anchor_bottom = 0.242
+margin_left = -411.5
+margin_top = -105.856
+margin_right = 411.5
+margin_bottom = 105.144
+custom_fonts/font = SubResource( 1 )
+text = "Paused"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseButton" type="Button" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.372
+anchor_right = 0.5
+anchor_bottom = 0.372
+margin_left = -90.0
+margin_top = -29.696
+margin_right = 90.0
+margin_bottom = 29.304
+rect_pivot_offset = Vector2( 144, 80 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0.807843, 0.807843, 0.807843, 1 )
+text = "Main Menu"
+flat = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+next_scene = "res://Scenes/MenuMain.tscn"
+
+[connection signal="button_up" from="ColorRect/PauseButton" to="ColorRect/PauseButton" method="_on_Button3_button_up"]
