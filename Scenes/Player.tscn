@@ -1,0 +1,288 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Fonts/IndieFlower-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scenes/KinematicBody2D.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Dash.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/HUD.gd" type="Script" id=4]
+[ext_resource path="res://Graphics/PlayerSprite/Sprite2.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/PlayerSprite/Sprite7.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/HUD/EnergyHealth1.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/HUD/EnergyBar.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/Environment/TileBlank.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/PlayerSprite/Sprite6.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/HUD/EnergyHealth.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/HUD/Energyvalue.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/PlayerSprite/Sprite1.png" type="Texture" id=13]
+[ext_resource path="res://Graphics/PlayerSprite/Sprite4.png" type="Texture" id=14]
+[ext_resource path="res://Graphics/PlayerSprite/Sprite9.png" type="Texture" id=15]
+[ext_resource path="res://Graphics/PlayerSprite/Sprite11.png" type="Texture" id=16]
+[ext_resource path="res://Graphics/PlayerSprite/Sprite5.png" type="Texture" id=17]
+[ext_resource path="res://Graphics/PlayerSprite/Sprite3.png" type="Texture" id=18]
+[ext_resource path="res://Graphics/PlayerSprite/Sprite10.png" type="Texture" id=19]
+[ext_resource path="res://Graphics/PlayerSprite/Sprite8.png" type="Texture" id=20]
+[ext_resource path="res://Scenes/MenuDead.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/MenuPause.tscn" type="PackedScene" id=22]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": false,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": false,
+"name": "damage",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": false,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "walk",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "attack",
+"speed": 0.5
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "sprint",
+"speed": 4.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "Damage"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.01, 0.05, 0.09 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Invulnerable"
+length = 0.2
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Neutral"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 81.2614, 491.153 )
+script = ExtResource( 2 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="MenuDead" parent="UI" instance=ExtResource( 21 )]
+visible = false
+
+[node name="Pause" parent="UI" instance=ExtResource( 22 )]
+visible = false
+margin_top = -0.21022
+margin_bottom = -0.210205
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 4 )
+
+[node name="PulseTween" type="Tween" parent="HUD"]
+
+[node name="UpdateTween" type="Tween" parent="HUD"]
+
+[node name="EnergyUnderlay" type="TextureProgress" parent="HUD"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 165.0
+margin_bottom = 33.0
+value = 100.0
+texture_progress = ExtResource( 9 )
+tint_progress = Color( 0.141176, 0.141176, 0.141176, 0.301961 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnergyUnder" type="TextureProgress" parent="HUD"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 165.0
+margin_bottom = 34.0
+value = 100.0
+texture_progress = ExtResource( 12 )
+tint_progress = Color( 0.14902, 0.14902, 0.14902, 0.780392 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnergyBar" type="TextureProgress" parent="HUD"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 165.0
+margin_bottom = 34.0
+value = 100.0
+texture_over = ExtResource( 8 )
+texture_progress = ExtResource( 12 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthUnderlay" type="TextureProgress" parent="HUD"]
+margin_left = 16.0
+margin_top = 40.0
+margin_right = 96.0
+margin_bottom = 56.0
+value = 100.0
+texture_progress = ExtResource( 9 )
+tint_progress = Color( 0.141176, 0.141176, 0.141176, 0.301961 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthUnder" type="TextureProgress" parent="HUD"]
+margin_left = 16.0
+margin_top = 40.0
+margin_right = 64.0
+margin_bottom = 48.0
+max_value = 3.0
+value = 3.0
+texture_progress = ExtResource( 11 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="TextureProgress" parent="HUD"]
+margin_left = 16.0
+margin_top = 39.7194
+margin_right = 80.0
+margin_bottom = 55.7194
+max_value = 3.0
+value = 3.0
+texture_under = ExtResource( 11 )
+texture_over = ExtResource( 8 )
+texture_progress = ExtResource( 7 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthNumber" type="Label" parent="HUD"]
+margin_left = 80.2915
+margin_top = 34.0603
+margin_right = 96.2915
+margin_bottom = 64.0603
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dash" type="Node2D" parent="."]
+position = Vector2( -81.2614, -491.153 )
+script = ExtResource( 3 )
+
+[node name="timer" type="Timer" parent="Dash"]
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.0078125, 0.0078125 )
+frames = SubResource( 2 )
+frame = 1
+playing = true
+
+[node name="Coll" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 3.23747, -15.7233, -0.582153, -13.9824, -1.52817, -7.99103, -8.886, 1.8895, -8.78089, 10.5087, -14.6816, 21.0878, 0.769852, 21.1929, -0.491486, 10.4715, 1.41498, 7.35532, 2.25587, -3.68146, 6.35524, -6.20413, 8.14215, -10.5137, 6.46455, -14.1799 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -0.315156, -0.109131 )
+current = true
+zoom = Vector2( 0.7, 0.7 )
+smoothing_enabled = true
+drag_margin_left = 0.6
+drag_margin_top = 0.6
+drag_margin_right = 0.6
+drag_margin_bottom = 0.6
+editor_draw_drag_margin = true
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="EffectsPlayer" type="AnimationPlayer" parent="."]
+anims/Damage = SubResource( 3 )
+anims/Invulnerable = SubResource( 4 )
+anims/Neutral = SubResource( 5 )
+
+[connection signal="dead" from="." to="UI/MenuDead" method="_on_Player_dead"]
+[connection signal="energy_updated" from="." to="HUD" method="_on_energy_updated"]
+[connection signal="health_updated" from="." to="HUD" method="_on_health_updated"]
+[connection signal="max_energy_updated" from="." to="HUD" method="_on_max_energy_updated"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_HitTimer_timeout"]
