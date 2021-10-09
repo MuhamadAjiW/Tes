@@ -1,20 +1,16 @@
 extends KinematicBody2D
 
-export (float) var max_energy = 100
-export (float) var max_health = 3
-
 onready var sprite: = $Sprite
 onready var dash: = $Dash
 onready var HUD: = $HUD
 onready var invulnerabilityTimer = $HitTimer
 onready var EffectsPlayer = $EffectsPlayer
-onready var energy = max_energy setget _set_energy
-onready var health = max_health setget _set_health
 
 signal energy_updated(energy)
 signal max_energy_updated(energy)
 signal health_updated(health)
 signal max_health_updated(health)
+signal cache_start()
 signal dead()
 
 const gravitasi = 25
@@ -30,14 +26,15 @@ var stateDead = false
 var doubleJump = false
 var speed = 0
 
-func _input(event):
-	pass
+onready var energy = $"/root/Global".cached_energy setget _set_energy
+onready var health = $"/root/Global".cached_health setget _set_health
+onready var max_energy = $"/root/Global".max_energy
+onready var max_health = $"/root/Global".max_health
 
 func _ready():
-	pass
-
-func _process(delta):
-	pass
+	$"/root/Global".register_player(self)
+	self.connect("cache_start", $"/root/Global", "_startcache")
+	emit_signal("cache_start")
 
 #energy
 func _set_energy(value):
@@ -229,4 +226,3 @@ func _physics_process(delta):
 			velocity.x = lerp(velocity.x,0,0.08)
 		velocity = move_and_slide(velocity, Vector2(0,-1), true)
 		
-

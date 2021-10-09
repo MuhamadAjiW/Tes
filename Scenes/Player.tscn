@@ -4,22 +4,20 @@
 [ext_resource path="res://Scenes/KinematicBody2D.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Dash.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/HUD.gd" type="Script" id=4]
-[ext_resource path="res://Graphics/PlayerSprite/Sprite2.png" type="Texture" id=5]
-[ext_resource path="res://Graphics/PlayerSprite/Sprite7.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/PlayerSprite/Drop.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/PlayerSprite/Walk1.png" type="Texture" id=6]
 [ext_resource path="res://Graphics/HUD/EnergyHealth1.png" type="Texture" id=7]
 [ext_resource path="res://Graphics/HUD/EnergyBar.png" type="Texture" id=8]
 [ext_resource path="res://Graphics/Environment/TileBlank.png" type="Texture" id=9]
-[ext_resource path="res://Graphics/PlayerSprite/Sprite6.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/PlayerSprite/Idle1.png" type="Texture" id=10]
 [ext_resource path="res://Graphics/HUD/EnergyHealth.png" type="Texture" id=11]
 [ext_resource path="res://Graphics/HUD/Energyvalue.png" type="Texture" id=12]
-[ext_resource path="res://Graphics/PlayerSprite/Sprite1.png" type="Texture" id=13]
-[ext_resource path="res://Graphics/PlayerSprite/Sprite4.png" type="Texture" id=14]
-[ext_resource path="res://Graphics/PlayerSprite/Sprite9.png" type="Texture" id=15]
-[ext_resource path="res://Graphics/PlayerSprite/Sprite11.png" type="Texture" id=16]
-[ext_resource path="res://Graphics/PlayerSprite/Sprite5.png" type="Texture" id=17]
-[ext_resource path="res://Graphics/PlayerSprite/Sprite3.png" type="Texture" id=18]
-[ext_resource path="res://Graphics/PlayerSprite/Sprite10.png" type="Texture" id=19]
-[ext_resource path="res://Graphics/PlayerSprite/Sprite8.png" type="Texture" id=20]
+[ext_resource path="res://Graphics/PlayerSprite/Idle2.png" type="Texture" id=13]
+[ext_resource path="res://Graphics/PlayerSprite/Dead.png" type="Texture" id=14]
+[ext_resource path="res://Graphics/PlayerSprite/Attack2.png" type="Texture" id=15]
+[ext_resource path="res://Graphics/PlayerSprite/Jump.png" type="Texture" id=16]
+[ext_resource path="res://Graphics/PlayerSprite/Walk2.png" type="Texture" id=17]
+[ext_resource path="res://Graphics/PlayerSprite/Attack1.png" type="Texture" id=18]
 [ext_resource path="res://Scenes/MenuDead.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Scenes/MenuPause.tscn" type="PackedScene" id=22]
 
@@ -28,46 +26,53 @@ size = 20
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="StreamTexture" id=2]
+flags = 4
+load_path = "res://.import/Sprint1.png-ad2e63f4c47cf74a315a5bfcd989bcda.stex"
+
+[sub_resource type="StreamTexture" id=3]
+flags = 4
+load_path = "res://.import/Sprint2.png-30391f4e9d1d4c001695557a33275a18.stex"
+
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 13 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "default",
 "speed": 2.0
 }, {
-"frames": [ ExtResource( 20 ) ],
-"loop": false,
-"name": "fall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ), ExtResource( 19 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
 "loop": true,
 "name": "sprint",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 18 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 5 ) ],
+"loop": false,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": false,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "walk",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 10 ) ],
-"loop": false,
-"name": "damage",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 17 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "attack",
 "speed": 0.5
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": false,
-"name": "jump",
+"name": "damage",
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=3]
-resource_name = "Damage"
+[sub_resource type="Animation" id=5]
 length = 0.1
 step = 0.01
 tracks/0/type = "value"
@@ -83,8 +88,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Invulnerable"
+[sub_resource type="Animation" id=6]
 length = 0.2
 loop = true
 step = 0.01
@@ -97,16 +101,15 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
+"update": 0,
 "values": [ true, false, true ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Neutral"
+[sub_resource type="Animation" id=7]
 length = 0.2
 step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:visible")
+tracks/0/path = NodePath("Sprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -114,11 +117,11 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0.01 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/path = NodePath("Sprite:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -127,7 +130,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.01 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ true ]
 }
 
 [node name="Player" type="KinematicBody2D"]
@@ -183,7 +186,7 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 165.0
 margin_bottom = 34.0
-value = 100.0
+value = 1.0
 texture_over = ExtResource( 8 )
 texture_progress = ExtResource( 12 )
 nine_patch_stretch = true
@@ -223,7 +226,7 @@ margin_top = 39.7194
 margin_right = 80.0
 margin_bottom = 55.7194
 max_value = 3.0
-value = 3.0
+value = 1.0
 texture_under = ExtResource( 11 )
 texture_over = ExtResource( 8 )
 texture_progress = ExtResource( 7 )
@@ -233,13 +236,13 @@ __meta__ = {
 }
 
 [node name="HealthNumber" type="Label" parent="HUD"]
-margin_left = 80.2915
-margin_top = 34.0603
-margin_right = 96.2915
-margin_bottom = 64.0603
+margin_left = 80.0
+margin_top = 34.0
+margin_right = 96.0
+margin_bottom = 64.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "3"
+text = "1"
 align = 1
 valign = 1
 __meta__ = {
@@ -254,7 +257,9 @@ script = ExtResource( 3 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0.0078125, 0.0078125 )
-frames = SubResource( 2 )
+frames = SubResource( 4 )
+animation = "sprint"
+frame = 1
 playing = true
 
 [node name="Coll" type="CollisionPolygon2D" parent="."]
@@ -265,9 +270,9 @@ wait_time = 0.8
 one_shot = true
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="."]
-anims/Damage = SubResource( 3 )
-anims/Invulnerable = SubResource( 4 )
-anims/Neutral = SubResource( 5 )
+anims/Damage = SubResource( 5 )
+anims/Invulnerable = SubResource( 6 )
+anims/Neutral = SubResource( 7 )
 
 [connection signal="dead" from="." to="UI/MenuDead" method="_on_Player_dead"]
 [connection signal="energy_updated" from="." to="HUD" method="_on_energy_updated"]

@@ -17,3 +17,4 @@ func _process(delta):
 		self.visible = true
 	else:
 		self.visible = false
+

@@ -7,11 +7,20 @@ onready var pulseTween: = $PulseTween
 onready var healthBar = $HealthBar
 onready var healthUnder = $HealthUnder
 onready var healthNumber = $HealthNumber
+onready var energy = $"/root/Global".cached_energy
+onready var health = $"/root/Global".cached_health
 
 var default_color = Color.white
 var pulse_color = Color.red
 var under_color = Color("c7262626")
 var pulse_under_color = Color("c7aa3b3b")
+
+func _ready():
+	energyBar.value = energy
+	energyUnder.value = energy
+	healthBar.value = health
+	healthUnder.value = health
+	healthNumber.text = str(health)
 
 func _on_energy_updated(energy):
 	energyBar.value = energy

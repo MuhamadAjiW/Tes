@@ -10,7 +10,6 @@ func _unhandled_input(event):
 		self.paused = not paused
 		scene_tree.set_input_as_handled()
 
-
 func set_paused(value: bool):
 	paused = value
 	scene_tree.paused = value
