@@ -9,5 +9,5 @@ func _ready():
 
 func _on_Button3_button_up():
 	get_tree().paused = false
-	get_tree().change_scene(next_scene)
+	$"/root/Transition".transition(next_scene)
 	emit_signal("cache_stop")

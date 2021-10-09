@@ -15,7 +15,7 @@ func set_paused(value: bool):
 	scene_tree.paused = value
 	pause_overlay.visible = value
 
-func _on_Player_dead():
+func _on_pause_disable():
 	set_process_unhandled_input(false)
 	self.visible = false
 

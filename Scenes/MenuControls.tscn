@@ -43,6 +43,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Left         = A
 Right        = D
 Jump        = W
+Interact      = S
 Sprint       = Shift
 Stance      = Ctrl
 Dash         = Ctrl + Shift

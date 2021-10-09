@@ -9,6 +9,6 @@ func _ready():
 	self.connect("cache_stop", $"/root/Global", "_resetcache")
 
 func _on_DeadButton_button_up():
-	get_tree().change_scene(next_scene)
+	$"/root/Transition".transition(next_scene)
 	emit_signal("dead")
 	emit_signal("cache_stop")

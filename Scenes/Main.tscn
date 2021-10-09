@@ -459,7 +459,7 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 [node name="Node2D" type="Node2D"]
 
 [node name="Door" parent="." instance=ExtResource( 2 )]
-position = Vector2( 77.6933, 492.05 )
+position = Vector2( 76.8014, 480.753 )
 next_scene = "res://Scenes/Starting Area.tscn"
 
 [node name="Player" parent="." instance=ExtResource( 1 )]

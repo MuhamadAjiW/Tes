@@ -134,6 +134,7 @@ func _physics_process(delta):
 			if stateAttackStance == true and energy >=50:
 				dash.dash_start(dashDuration)
 				if dash.is_dashing():
+					sprite.play("blink")
 					velocity.y = -2000
 					var delay = 0.08
 					yield(get_tree().create_timer(delay), "timeout")
@@ -150,6 +151,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("dive") and not is_on_floor() and stateAttackStance == true and energy >=50:
 			dash.dash_start(dashDuration)
 			if dash.is_dashing():
+				sprite.play("blink")
 				velocity.y += 2000
 				var delay = 0.08
 				yield(get_tree().create_timer(delay), "timeout")
@@ -181,6 +183,7 @@ func _physics_process(delta):
 				yield(get_tree().create_timer(delay), "timeout")
 				dash.dash_start(dashDuration)
 				if dash.is_dashing():
+					sprite.play("blink")
 					speed = dashSpeed
 					velocity.y = 0
 					if sprite.flip_h == false:

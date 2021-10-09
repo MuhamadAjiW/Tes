@@ -1,14 +1,10 @@
 extends CanvasLayer
 
-signal transitioned()
-
-func transition():
-	$AnimationPlayer.play("Fade in")
-	print("fading")
-
-func _on_AnimationPlayer_animation_finished(anim_name):
-	print("done")
-	if anim_name == "Fade in":
-		emit_signal("transitioned")
-		$AnimationPlayer.play("Fade Out")
-		print("is detected")
+func transition(path):
+	$ColorRect.visible = true
+	$AnimationPlayer.play("Fade")
+	yield($AnimationPlayer, "animation_finished")
+	assert(get_tree().change_scene(path) == OK)
+	$AnimationPlayer.play_backwards("Fade")
+	yield($AnimationPlayer, "animation_finished")
+	$ColorRect.visible = false
