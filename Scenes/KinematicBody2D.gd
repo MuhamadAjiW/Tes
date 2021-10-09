@@ -179,8 +179,6 @@ func _physics_process(delta):
 			sprite.play("attack")
 			if Input.is_action_just_pressed("sprint") and energy >=50:
 				energyUse(50)
-				var delay = 0.2
-				yield(get_tree().create_timer(delay), "timeout")
 				dash.dash_start(dashDuration)
 				if dash.is_dashing():
 					sprite.play("blink")

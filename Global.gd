@@ -7,6 +7,8 @@ var max_health = 3
 onready var cached_energy = max_energy
 onready var cached_health = max_health
 
+var door_name = null
+
 func register_player(in_player):
 	player = in_player
 
