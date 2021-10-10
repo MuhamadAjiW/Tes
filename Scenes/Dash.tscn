@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Dash.gd" type="Script" id=1]
+
+[node name="Dash" type="Node2D"]
+position = Vector2( -81.2614, -491.153 )
+script = ExtResource( 1 )
+
+[node name="timer" type="Timer" parent="."]
+one_shot = true

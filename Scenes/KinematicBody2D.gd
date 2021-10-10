@@ -18,7 +18,7 @@ const gravitasiMax = 400
 const jumpSpeed = 500
 const walkSpeed = 150
 const sprintSpeed = 400
-const dashSpeed = 20000
+const dashSpeed = 10000
 const dashDuration = 0.2
 var velocity :Vector2
 var stateAttackStance = false
@@ -207,7 +207,7 @@ func _physics_process(delta):
 			for i in range(get_slide_count()):
 				if "spike" in get_slide_collision(i).collider.name:
 					takeDamage(1)
-		
+
 	#hitbox
 		if sprite.flip_h == true:
 			$Coll.scale.x = -1

@@ -69,7 +69,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-next_scene = "res://Scenes/Starting Area.tscn"
+next_scene = "res://Scenes/Cell Area.tscn"
 
 [node name="QuitButton" type="Button" parent="."]
 anchor_left = 0.076
