@@ -5,6 +5,11 @@ onready var dash: = $Dash
 onready var HUD: = $HUD
 onready var invulnerabilityTimer = $HitTimer
 onready var EffectsPlayer = $EffectsPlayer
+onready var Pause: = $UI/Pause
+onready var energy = $"/root/Global".cached_energy setget _set_energy
+onready var health = $"/root/Global".cached_health setget _set_health
+onready var max_energy = $"/root/Global".max_energy
+onready var max_health = $"/root/Global".max_health
 
 signal energy_updated(energy)
 signal max_energy_updated(energy)
@@ -19,17 +24,12 @@ const jumpSpeed = 500
 const walkSpeed = 150
 const sprintSpeed = 400
 const dashSpeed = 10000
-const dashDuration = 0.2
+const dashDuration = 0.15
 var velocity :Vector2
 var stateAttackStance = false
 var stateDead = false
 var doubleJump = false
 var speed = 0
-
-onready var energy = $"/root/Global".cached_energy setget _set_energy
-onready var health = $"/root/Global".cached_health setget _set_health
-onready var max_energy = $"/root/Global".max_energy
-onready var max_health = $"/root/Global".max_health
 
 func _ready():
 	$"/root/Global".register_player(self)
@@ -81,7 +81,6 @@ func _on_HitTimer_timeout():
 func takeHealing(amount):
 	_set_health(health + amount)
 
-
 #movement
 func _physics_process(delta):
 	if stateDead == false:
@@ -104,8 +103,8 @@ func _physics_process(delta):
 		if is_on_floor():
 			speed = lerp(speed,150,0.15)
 			doubleJump = false
-		if Input.is_action_pressed("sprint") and is_on_floor():
-			speed = sprintSpeed
+			if Input.is_action_pressed("sprint"):
+				speed = sprintSpeed
 		if Input.is_action_pressed("right"):
 			if stateAttackStance == true and is_on_floor():
 				sprite.flip_h = false
@@ -131,35 +130,9 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("Jump"):
 			if is_on_floor() and stateAttackStance == false:
 				velocity.y += -jumpSpeed
-			if stateAttackStance == true and energy >=50:
-				dash.dash_start(dashDuration)
-				if dash.is_dashing():
-					sprite.play("blink")
-					velocity.y = -2000
-					var delay = 0.08
-					yield(get_tree().create_timer(delay), "timeout")
-					velocity.y =  -jumpSpeed
-					doubleJump = false
-					energyUse(50)
-				speed = sprintSpeed
-			elif stateAttackStance == true and energy <50:
-				HUD.insufficient()
 			if Input.is_action_just_pressed("Jump") and doubleJump == false and not is_on_floor() and stateAttackStance == false:
 				velocity.y =  -jumpSpeed/1.3
 				doubleJump = true
-		
-		if Input.is_action_just_pressed("dive") and not is_on_floor() and stateAttackStance == true and energy >=50:
-			dash.dash_start(dashDuration)
-			if dash.is_dashing():
-				sprite.play("blink")
-				velocity.y += 2000
-				var delay = 0.08
-				yield(get_tree().create_timer(delay), "timeout")
-				velocity.y =  jumpSpeed
-				doubleJump = false
-				energyUse(50)
-		elif Input.is_action_just_pressed("dive") and not is_on_floor() and stateAttackStance == true and energy <50:
-			HUD.insufficient()
 				
 	#animasi
 		if is_on_floor() == false and stateAttackStance == false:
@@ -171,7 +144,7 @@ func _physics_process(delta):
 			sprite.play("sprint")
 		elif (velocity.x < 200 or velocity.x > -200) and velocity.x != 0 and is_on_floor():
 			sprite.play("walk")
-		
+			
 	#attack
 		stateAttackStance = false
 		if Input.is_action_pressed("attack"):
@@ -201,7 +174,39 @@ func _physics_process(delta):
 				doubleJump = false
 			elif Input.is_action_just_pressed("sprint") and energy <50:
 				HUD.insufficient()
-		
+			if Input.is_action_just_pressed("Jump") and energy >=50:
+				energyUse(50)
+				dash.dash_start(dashDuration)
+				if dash.is_dashing():
+					sprite.play("blink")
+					speed = dashSpeed
+					velocity.y = -speed
+					var collision = move_and_collide(velocity*delta)
+					if collision:
+						velocity.x = 0
+						velocity.y = 0
+				speed = sprintSpeed
+				velocity.y = -speed
+				doubleJump = false
+			elif Input.is_action_just_pressed("Jump") and energy <50:
+				HUD.insufficient()
+			if Input.is_action_just_pressed("dive") and energy >=50:
+				energyUse(50)
+				dash.dash_start(dashDuration)
+				if dash.is_dashing():
+					sprite.play("blink")
+					speed = dashSpeed
+					velocity.y = speed
+					var collision = move_and_collide(velocity*delta)
+					if collision:
+						velocity.x = 0
+						velocity.y = 0
+				speed = sprintSpeed
+				velocity.y = speed
+				doubleJump = false
+			elif Input.is_action_just_pressed("dive") and energy <50:
+				HUD.insufficient()
+	
 #damage taking
 		if get_slide_count() > 0:
 			for i in range(get_slide_count()):
@@ -213,7 +218,7 @@ func _physics_process(delta):
 			$Coll.scale.x = -1
 		elif sprite.flip_h == false:
 			$Coll.scale.x = 1
-
+	
 #dying ragdoll
 	if stateDead == true:
 		sprite.play("damage")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Fonts/IndieFlower-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/KinematicBody2D.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Graphics/PlayerSprite/Walk2.png" type="Texture" id=17]
 [ext_resource path="res://Graphics/PlayerSprite/Attack1.png" type="Texture" id=18]
 [ext_resource path="res://Graphics/PlayerSprite/Blink.png" type="Texture" id=19]
+[ext_resource path="res://Graphics/PlayerSprite/No interaction.png" type="Texture" id=20]
 [ext_resource path="res://Scenes/MenuDead.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Scenes/MenuPause.tscn" type="PackedScene" id=22]
 
@@ -76,6 +77,11 @@ animations = [ {
 "loop": true,
 "name": "sprint",
 "speed": 4.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "No Interact",
+"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=5]
@@ -260,7 +266,6 @@ __meta__ = {
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0.0078125, 0.0078125 )
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [node name="Coll" type="CollisionPolygon2D" parent="."]

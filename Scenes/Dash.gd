@@ -11,3 +11,4 @@ func dash_start(duration):
 
 func is_dashing():
 	return !durationTimer.is_stopped()
+	
