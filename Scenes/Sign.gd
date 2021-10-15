@@ -13,7 +13,7 @@ func _input(event):
 				text_overlay.visible = false
 				condition = false
 				$"/root/Global".player.Pause._on_restore_pause()
-			else:
+			elif get_tree().paused == false:
 				condition = true
 				get_tree().paused = true
 				scene_tree.set_input_as_handled()
@@ -24,5 +24,6 @@ func _input(event):
 			get_tree().paused = false
 			text_overlay.visible = false
 			condition = false
+			yield(get_tree().create_timer(0.1), "timeout")
 			$"/root/Global".player.Pause._on_restore_pause()
 			
