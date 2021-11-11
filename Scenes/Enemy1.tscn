@@ -1,0 +1,280 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Scenes/EnemyHitbox.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/BasicEnemy.gd" type="Script" id=2]
+[ext_resource path="res://Graphics/Enemy/EnemyIdle1.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Enemy/EnemyIdle2.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Enemy/EnemyWalk1.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/Enemy/EnemyWalk2.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/Enemy/EnemyDamage.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/AI.gd" type="Script" id=8]
+[ext_resource path="res://Graphics/Enemy/EnemyJump.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/Enemy/EnemySprint2.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/Enemy/EnemyDrop.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/Enemy/EnemySprint1.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/Enemy/EnemyAware.png" type="Texture" id=13]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 436.495, 231.5 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 231.828
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 24, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 24, 8 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 16, 232 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 192, 232 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 72, 32 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": false,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": false,
+"name": "damage",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": false,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "sprint",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "walk",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "aware",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=9]
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.01, 0.05, 0.09 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.2
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[node name="Enemy1" type="KinematicBody2D"]
+position = Vector2( -0.404541, -0.499512 )
+collision_layer = 8
+script = ExtResource( 2 )
+
+[node name="AI" type="Node2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="ResetTimer" type="Timer" parent="AI"]
+wait_time = 5.0
+
+[node name="AwarenessTimer" type="Timer" parent="AI"]
+one_shot = true
+
+[node name="Total" type="Area2D" parent="AI"]
+collision_layer = 131073
+collision_mask = 131073
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AI/Total"]
+position = Vector2( -4.09039, 0.499512 )
+shape = SubResource( 1 )
+
+[node name="Awareness" type="Area2D" parent="AI"]
+collision_layer = 131073
+collision_mask = 131073
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AI/Awareness"]
+position = Vector2( 0.404541, 0.499512 )
+shape = SubResource( 2 )
+
+[node name="Wall" type="Area2D" parent="AI"]
+position = Vector2( 0.404541, -47.5005 )
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="AI/Wall"]
+position = Vector2( 32, -40 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="AI/Wall"]
+position = Vector2( -40, -40 )
+shape = SubResource( 3 )
+
+[node name="Obstacle" type="Area2D" parent="AI"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="AI/Obstacle"]
+position = Vector2( 32.4045, 0.499512 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AI/Obstacle"]
+position = Vector2( -39.5955, 0.499512 )
+shape = SubResource( 4 )
+
+[node name="RightClose" type="Area2D" parent="AI"]
+collision_layer = 131073
+collision_mask = 131073
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AI/RightClose"]
+position = Vector2( 32.4045, 0.499512 )
+shape = SubResource( 5 )
+
+[node name="LeftClose" type="Area2D" parent="AI"]
+collision_layer = 131073
+collision_mask = 131073
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AI/LeftClose"]
+position = Vector2( -39.5955, 0.499512 )
+shape = SubResource( 5 )
+
+[node name="Right" type="Area2D" parent="AI"]
+collision_layer = 131073
+collision_mask = 131073
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AI/Right"]
+position = Vector2( 240.405, 0.499512 )
+shape = SubResource( 6 )
+
+[node name="Left" type="Area2D" parent="AI"]
+collision_layer = 131073
+collision_mask = 131073
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AI/Left"]
+position = Vector2( -247.595, 0.499512 )
+shape = SubResource( 6 )
+
+[node name="Up" type="Area2D" parent="AI"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AI/Up"]
+position = Vector2( 0.404541, -71.5005 )
+shape = SubResource( 7 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.0078125, 0.0078125 )
+frames = SubResource( 8 )
+playing = true
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="EffectsPlayer" type="AnimationPlayer" parent="."]
+anims/Damage = SubResource( 9 )
+anims/Dead = SubResource( 10 )
+anims/Invulnerable = SubResource( 11 )
+anims/Neutral = SubResource( 12 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 3.05176e-05, -0.0883789 )
+collision_layer = 524288
+collision_mask = 524288
+script = ExtResource( 1 )
+
+[node name="Coll" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( 3.23747, -15.7233, -0.582153, -13.9824, -1.52817, -7.99103, -8.886, 1.8895, -8.78089, 10.5087, -14.2841, 21.3867, 0.331192, 21.3867, -0.491486, 10.4715, 1.41498, 7.35532, 2.25587, -3.68146, 6.35524, -6.20413, 8.14215, -10.5137, 6.46455, -14.1799 )
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Coll" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 3.23747, -15.7233, -0.582153, -13.9824, -1.52817, -7.99103, -8.886, 1.8895, -8.78089, 10.5087, -14.2841, 21.3867, 0.331192, 21.3867, -0.491486, 10.4715, 1.41498, 7.35532, 2.25587, -3.68146, 6.35524, -6.20413, 8.14215, -10.5137, 6.46455, -14.1799 )
+
+[connection signal="timeout" from="AI/ResetTimer" to="AI" method="_on_ResetTimer_timeout"]
+[connection signal="timeout" from="AI/AwarenessTimer" to="AI" method="_on_AwarenessTimer_timeout"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_HitTimer_timeout"]
+[connection signal="Hit" from="Area2D" to="." method="_on_Area2D_Hit"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

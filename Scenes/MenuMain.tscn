@@ -44,7 +44,7 @@ margin_top = -105.28
 margin_right = 830.406
 margin_bottom = 105.72
 custom_fonts/font = SubResource( 1 )
-text = "Gamee lesgoo"
+text = "Game 1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
