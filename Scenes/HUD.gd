@@ -2,6 +2,7 @@ extends CanvasLayer
 
 onready var energyBar: = $EnergyBar
 onready var energyUnder: = $EnergyUnder
+onready var energyNumber = $EnergyNumber
 onready var updateTween: = $UpdateTween
 onready var pulseTween: = $PulseTween
 onready var healthBar = $HealthBar
@@ -26,6 +27,7 @@ func _ready():
 	healthNumber.text = str(health)
 	healthBar.value = health
 	healthUnder.value = health
+	energyNumber.text = str(energy)
 	energyBar.value = energy
 	energyUnder.value = energy
 
@@ -33,6 +35,7 @@ func _on_energy_updated(energy):
 	energyBar.value = energy
 	updateTween.interpolate_property(energyUnder, "value", energyUnder.value, energy, 0.4, Tween.TRANS_SINE, Tween.EASE_OUT_IN)
 	updateTween.start()
+	energyNumber.text = str(round(energy))
 	
 func _on_max_energy_updated(max_energy):
 	energyBar.max_value = max_energy

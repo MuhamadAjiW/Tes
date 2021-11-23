@@ -30,9 +30,10 @@ var velocity :Vector2
 var stateAttackStance = false
 var stateDead = false
 var doubleJump = false
+var cutscene = false
 var dissapear = false
 var speed = 0
-var regenSpeed = 0.5
+var regenSpeed = 0.35
 
 func _ready():
 	$"/root/Global".register_player(self)
@@ -107,6 +108,13 @@ func _on_HitTimer_timeout():
 func takeHealing(amount):
 	_set_health(health + amount)
 
+func buff():
+	$HUD/ColorRect.visible = true
+	for i in range(25):
+		energyRegen(max_energy)
+		yield(get_tree().create_timer(0.2), "timeout")
+	$HUD/ColorRect.visible = false
+	
 #movement
 func _on_Dash_dash_stopped():
 	speed = sprintSpeed
@@ -122,7 +130,7 @@ func _on_Dash_upDash_stopped():
 	velocity.y = -sprintSpeed
 
 func _physics_process(delta):
-	if stateDead == false:
+	if stateDead == false and cutscene == false:
 		energyRegen(regenSpeed)
 		if velocity.y == 0 and velocity.x == 0 and stateAttackStance == false:
 			sprite.play("default")
@@ -255,7 +263,7 @@ func _physics_process(delta):
 #damage taking
 		if get_slide_count() > 0:
 			for i in range(get_slide_count()):
-				if "spike" in get_slide_collision(i).collider.name or "Enemy" in get_slide_collision(i).collider.name:
+				if "spike" in get_slide_collision(i).collider.name:
 					takeDamage(1)
 
 	#hitbox
@@ -278,7 +286,37 @@ func _physics_process(delta):
 		elif not is_on_floor():
 			velocity.x = lerp(velocity.x,0,0.01)
 		velocity = move_and_slide(velocity, Vector2(0,-1), true)
+
+#cutscene
+	elif cutscene == true:
+		if velocity.y == 0 and velocity.x == 0 and stateAttackStance == false:
+			sprite.play("default")
 		
+		if is_on_floor() == false and stateAttackStance == false:
+			if velocity.y < 0:
+				sprite.play("jump")
+			else:
+				sprite.play("fall")
+		if (velocity.x > 200 or velocity.x < -200) and is_on_floor():
+			sprite.play("sprint")
+		elif (velocity.x < 200 or velocity.x > -200) and velocity.x != 0 and is_on_floor():
+			sprite.play("walk")
+		
+		energyRegen(regenSpeed)
+		
+		if velocity.y < gravitasiMax:
+			velocity.y += gravitasi
+		elif velocity.y > gravitasiMax:
+			velocity.y += (gravitasi/5)
+		
+		if is_on_floor():
+			velocity.x = lerp(velocity.x,0,0.2)
+		else:
+			velocity.x = lerp(velocity.x,0,0.08)
+				
+		velocity = move_and_slide(velocity, Vector2(0,-1), true)
+
+#despawn
 func _on_DeathTimer_timeout():
 	if dissapear == false:
 		EffectsPlayer.play("Dead")

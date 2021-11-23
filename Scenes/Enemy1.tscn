@@ -27,10 +27,10 @@ extents = Vector2( 24, 10 )
 extents = Vector2( 24, 8 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 16, 232 )
+extents = Vector2( 16, 904.5 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 192, 232 )
+extents = Vector2( 498.874, 232 )
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 72, 32 )
@@ -42,6 +42,26 @@ animations = [ {
 "name": "default",
 "speed": 2.0
 }, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "aware",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": false,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "walk",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "sprint",
+"speed": 4.0
+}, {
 "frames": [ ExtResource( 11 ) ],
 "loop": false,
 "name": "fall",
@@ -50,26 +70,6 @@ animations = [ {
 "frames": [ ExtResource( 7 ) ],
 "loop": false,
 "name": "damage",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": false,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "sprint",
-"speed": 4.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "walk",
-"speed": 3.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "aware",
 "speed": 5.0
 } ]
 

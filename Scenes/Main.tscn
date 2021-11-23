@@ -60,25 +60,25 @@ animations = [ {
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ) ],
-"loop": false,
-"name": "jump",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 17 ) ],
 "loop": false,
 "name": "damage",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 29 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "sprint",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": false,
+"name": "jump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "walk",
 "speed": 3.0
-}, {
-"frames": [ ExtResource( 29 ), ExtResource( 19 ) ],
-"loop": true,
-"name": "sprint",
-"speed": 4.0
 }, {
 "frames": [ ExtResource( 30 ) ],
 "loop": false,

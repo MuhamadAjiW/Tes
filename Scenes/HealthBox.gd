@@ -27,16 +27,3 @@ func _input(event):
 			condition = false
 			yield(get_tree().create_timer(0.1), "timeout")
 			$"/root/Global".player.Pause._on_restore_pause()
-
-
-func _on_Choice_1_button_up():
-	var new_max_health = $"/root/Global".player.max_health + 1
-	$"/root/Global".player._set_max_health(new_max_health)
-
-func _on_Choice_2_button_up():
-	var new_regenSpeed= $"/root/Global".player.regenSpeed + 0.1*$"/root/Global".player.regenSpeed
-	$"/root/Global".player.regenSpeed = new_regenSpeed
-
-func _on_Choice_3_button_up():
-	var new_max_energy = $"/root/Global".player.max_energy + 50
-	$"/root/Global".player._set_max_energy(new_max_energy)

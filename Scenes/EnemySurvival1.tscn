@@ -1,0 +1,245 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Graphics/Enemy/EnemyIdle1.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/Enemy/EnemyDrop.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Enemy/EnemySprint2.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Enemy/EnemyDamage.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Enemy/EnemyWalk2.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/Enemy/EnemySprint1.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/Enemy/EnemyIdle2.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/Enemy/EnemyAware.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/Enemy/EnemyWalk1.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/Enemy/EnemyJump.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/EnemySurvival1.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/EnemyHitbox.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/AISurvival1.gd" type="Script" id=13]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 23.5955, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 23.5955, 8.49951 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 904.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 59.2435, 32 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": false,
+"name": "aware",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": false,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walk",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "sprint",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": false,
+"name": "damage",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=6]
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.01, 0.05, 0.09 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.2
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[node name="EnemySurvival1" type="KinematicBody2D"]
+position = Vector2( -616, 1608 )
+collision_layer = 8
+script = ExtResource( 11 )
+
+[node name="AISurvival1" type="Node2D" parent="."]
+script = ExtResource( 13 )
+
+[node name="Wall" type="Area2D" parent="AISurvival1"]
+position = Vector2( 0.404541, -47.5005 )
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="AISurvival1/Wall"]
+position = Vector2( 32, -40 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="AISurvival1/Wall"]
+position = Vector2( -40, -40 )
+shape = SubResource( 1 )
+
+[node name="Obstacle" type="Area2D" parent="AISurvival1"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="AISurvival1/Obstacle"]
+position = Vector2( 32.4045, 0.499512 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AISurvival1/Obstacle"]
+position = Vector2( -39.5955, 0.499512 )
+shape = SubResource( 2 )
+
+[node name="RightClose" type="Area2D" parent="AISurvival1"]
+collision_layer = 131073
+collision_mask = 131073
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AISurvival1/RightClose"]
+position = Vector2( 32.4045, 0.499512 )
+shape = SubResource( 3 )
+
+[node name="LeftClose" type="Area2D" parent="AISurvival1"]
+collision_layer = 131073
+collision_mask = 131073
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AISurvival1/LeftClose"]
+position = Vector2( -39.5955, 0.499512 )
+shape = SubResource( 3 )
+
+[node name="Up" type="Area2D" parent="AISurvival1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AISurvival1/Up"]
+position = Vector2( -3.24347, -68.4137 )
+shape = SubResource( 4 )
+
+[node name="Rightlimit" type="Node2D" parent="AISurvival1"]
+position = Vector2( 16, 0 )
+
+[node name="Leftlimit" type="Node2D" parent="AISurvival1"]
+position = Vector2( -24, 0.499512 )
+
+[node name="HoldTimer" type="Timer" parent="AISurvival1"]
+one_shot = true
+
+[node name="SeekTimer" type="Timer" parent="AISurvival1"]
+one_shot = true
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -0.0883789 )
+frames = SubResource( 5 )
+frame = 1
+playing = true
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="EffectsPlayer" type="AnimationPlayer" parent="."]
+anims/Damage = SubResource( 6 )
+anims/Dead = SubResource( 7 )
+anims/Invulnerable = SubResource( 8 )
+anims/Neutral = SubResource( 9 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 3.05176e-05, -0.0883789 )
+collision_layer = 524288
+collision_mask = 524288
+script = ExtResource( 12 )
+
+[node name="Coll" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( 3.23747, -15.7233, -0.582153, -13.9824, -1.52817, -7.99103, -8.886, 1.8895, -8.78089, 10.5087, -14.2841, 21.3867, 0.331192, 21.3867, -0.491486, 10.4715, 1.41498, 7.35532, 2.25587, -3.68146, 6.35524, -6.20413, 8.14215, -10.5137, 6.46455, -14.1799 )
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Coll" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 3.23747, -15.7233, -0.582153, -13.9824, -1.52817, -7.99103, -8.886, 1.8895, -8.78089, 10.5087, -14.2841, 21.3867, 0.331192, 21.3867, -0.491486, 10.4715, 1.41498, 7.35532, 2.25587, -3.68146, 6.35524, -6.20413, 8.14215, -10.5137, 6.46455, -14.1799 )
+
+[connection signal="timeout" from="AISurvival1/HoldTimer" to="AISurvival1" method="_on_HoldTimer_timeout"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_HitTimer_timeout"]
+[connection signal="Hit" from="Area2D" to="." method="_on_Area2D_Hit"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
