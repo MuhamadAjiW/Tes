@@ -5,8 +5,9 @@ onready var coll = $Coll
 onready var hitbox = $Area2D/Coll
 onready var invulnerabilityTimer = $HitTimer
 onready var EffectsPlayer = $EffectsPlayer
-onready var health = 3
-onready var max_health = 3
+onready var health = 1
+onready var max_health = 1
+onready var wall = get_parent().get_node("Wall Moving1")
 
 signal health_updated(health)
 signal max_health_updated(health)
@@ -15,6 +16,7 @@ const gravitasi = 25
 const gravitasiMax = 400
 var stateDead = false
 var velocity :Vector2
+var counter = 0
 
 func _ready():
 	pass
@@ -95,6 +97,11 @@ func _physics_process(delta):
 			sprite.flip_h = true
 			coll.scale.x = -1
 			hitbox.scale.x = -1
+		
+		if get_slide_count() > 0:
+			for i in range(get_slide_count()):
+				if "Player" in get_slide_collision(i).collider.name:
+					$"/root/Global".player.takeDamage(1)
 
 	elif stateDead == true:
 		sprite.play("damage")
@@ -112,5 +119,9 @@ func _physics_process(delta):
 
 func _on_DeathTimer_timeout():
 	EffectsPlayer.play("Dead")
-	yield(get_tree().create_timer(3), "timeout")
+	yield(get_tree().create_timer(0.4), "timeout")
+	while counter < 160:
+		wall.move(0, -70)
+		counter += 1
+		yield(get_tree().create_timer(0.05), "timeout")
 	queue_free()

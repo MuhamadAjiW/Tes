@@ -13,10 +13,11 @@ func done():
 	$"/root/Global".player.cutscene = false
 	camera_player.current = false
 	camera_static.current = true
-	get_parent().get_node("Sign2").queue_free()
-	get_parent().get_node("Dummy").queue_free()
+	get_parent().get_node("Sprite").queue_free()
 	get_parent().get_node("DoorUnder").queue_free()
 	get_parent().get_node("TileMap1").queue_free()
+	get_parent().get_node("TileMap1 wall").queue_free()
+	get_parent().get_node("Wall Moving1").queue_free()
 	camera_player.queue_free()
 	get_parent().initiate()
 	print("Done!")

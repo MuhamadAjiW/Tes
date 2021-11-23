@@ -66,6 +66,7 @@ func spawn(x):
 		yield(get_tree().create_timer(0.5), "timeout")
 
 func _process(delta):
+	print(get_child_count())
 	$"CanvasLayer/ColorRect/Point counter".text = str($"/root/Global".points)
 	if start == true:
 		if spawning == true and chosen == true:

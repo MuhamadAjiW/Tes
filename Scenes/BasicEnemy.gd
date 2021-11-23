@@ -95,6 +95,11 @@ func _physics_process(delta):
 			sprite.flip_h = true
 			coll.scale.x = -1
 			hitbox.scale.x = -1
+		
+		if get_slide_count() > 0:
+			for i in range(get_slide_count()):
+				if "Player" in get_slide_collision(i).collider.name:
+					$"/root/Global".player.takeDamage(1)
 
 	elif stateDead == true:
 		sprite.play("damage")
