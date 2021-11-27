@@ -112,6 +112,7 @@ func buff():
 	$HUD/ColorRect.visible = true
 	for i in range(25):
 		energyRegen(max_energy)
+		invulnerabilityTimer.start()
 		yield(get_tree().create_timer(0.2), "timeout")
 	$HUD/ColorRect.visible = false
 	
@@ -254,7 +255,6 @@ func _physics_process(delta):
 		if dash.is_dashing():
 			var collision = move_and_collide(velocity*delta)
 			if collision:
-				print("collided")
 				speed = sprintSpeed
 				dash.collision = true
 				velocity.x = 0
@@ -265,14 +265,6 @@ func _physics_process(delta):
 			for i in range(get_slide_count()):
 				if "spike" in get_slide_collision(i).collider.name:
 					takeDamage(1)
-
-	#hitbox
-		if sprite.flip_h == true:
-			$Coll.scale.x = -1
-
-		elif sprite.flip_h == false:
-			$Coll.scale.x = 1
-
 	
 #dying ragdoll
 	elif stateDead == true and dissapear == false:

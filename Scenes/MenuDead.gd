@@ -8,15 +8,14 @@ signal disable_pause()
 
 func _on_Player_dead():
 	self.dead = not dead
+	self.visible = true
+	$AnimationPlayer.play("New Anim")
+	emit_signal("disable_pause")
 
 func set_dead(value: bool):
 	dead = value
 	dead_overlay.visible = value
 
 func _process(delta):
-	if dead == true:
-		self.visible = true
-		emit_signal("disable_pause")
-	else:
-		self.visible = false
+	pass
 
