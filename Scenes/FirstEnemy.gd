@@ -9,6 +9,14 @@ onready var health = 1
 onready var max_health = 1
 onready var wall = get_parent().get_node("Wall Moving1")
 
+onready var screechSfx1 = $Sound/Screech1
+onready var screechSfx2 = $Sound/Screech2
+onready var screechSfx3 = $Sound/Screech3
+onready var hitSfx = $Sound/Hit
+onready var sprintSfx = $Sound/StepQuick
+onready var walkSfx = $Sound/Step
+onready var jumpSfx = $Sound/Jump
+
 signal health_updated(health)
 signal max_health_updated(health)
 
@@ -41,6 +49,7 @@ func _set_health(value):
 
 func takeDamage(amount):
 	if invulnerabilityTimer.is_stopped():
+		hitSfx.play()
 		invulnerabilityTimer.start()
 		_set_health(health - amount)
 		EffectsPlayer.play("Damage")
@@ -78,12 +87,34 @@ func _physics_process(delta):
 		#hadapan
 		if velocity.y == 0 and velocity.x == 0 and not $AI.radar.overlaps_body($"/root/Global".player):
 			sprite.play("default")
+			if walkSfx.is_playing() == true:
+				walkSfx.stop()
+			if sprintSfx.is_playing() == true:
+				sprintSfx.stop()
 		elif is_on_floor() and velocity.x != 0:
 			if (velocity.x > 250 or velocity.x < -250):
 				sprite.play("sprint")
+				
+				if walkSfx.is_playing() == true:
+					walkSfx.stop()
+				if sprintSfx.is_playing() == false:
+					sprintSfx.play()
+				
 			elif (velocity.x < 250 or velocity.x > -250):
 				sprite.play("walk")
+				
+				if sprintSfx.is_playing() == true:
+					sprintSfx.stop()
+				if walkSfx.is_playing() == false:
+					walkSfx.play()
+				
 		elif is_on_floor() == false:
+			
+			if walkSfx.is_playing() == true:
+				walkSfx.stop()
+			if sprintSfx.is_playing() == true:
+				sprintSfx.stop()
+			
 			if velocity.y < 0:
 				sprite.play("jump")
 			else:
@@ -104,6 +135,12 @@ func _physics_process(delta):
 					$"/root/Global".player.takeDamage(1)
 
 	elif stateDead == true:
+		
+		if walkSfx.is_playing() == true:
+			walkSfx.stop()
+		if sprintSfx.is_playing() == true:
+			sprintSfx.stop()
+			
 		sprite.play("damage")
 		if velocity.y < gravitasiMax:
 			velocity.y += gravitasi

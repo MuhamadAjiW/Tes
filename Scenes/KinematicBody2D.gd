@@ -6,6 +6,13 @@ onready var HUD: = $HUD
 onready var invulnerabilityTimer = $HitTimer
 onready var EffectsPlayer = $EffectsPlayer
 onready var Pause: = $UI/Pause
+
+onready var hitSfx = $Sound/Hit
+onready var sprintSfx = $Sound/StepQuick
+onready var walkSfx = $Sound/Step
+onready var jumpSfx = $Sound/Jump
+onready var doublejumpSfx = $Sound/JumpDouble
+
 onready var energy = $"/root/Global".cached_energy setget _set_energy
 onready var health = $"/root/Global".cached_health setget _set_health
 onready var max_energy = $"/root/Global".cached_max_energy setget _set_max_health
@@ -85,6 +92,7 @@ func _set_health(value):
 
 func takeDamage(amount):
 	if invulnerabilityTimer.is_stopped():
+		hitSfx.play()
 		invulnerabilityTimer.start()
 		_set_health(health - amount)
 		if stateDead == false:
@@ -135,6 +143,11 @@ func _physics_process(delta):
 		energyRegen(regenSpeed)
 		if velocity.y == 0 and velocity.x == 0 and stateAttackStance == false:
 			sprite.play("default")
+			
+			if walkSfx.is_playing() == true:
+				walkSfx.stop()
+			if sprintSfx.is_playing() == true:
+				sprintSfx.stop()
 		
 	#gravitasi
 		if velocity.y < gravitasiMax:
@@ -178,24 +191,51 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("Jump"):
 			if is_on_floor() and stateAttackStance == false:
 				velocity.y += -jumpSpeed
+				jumpSfx.play()
 			if Input.is_action_just_pressed("Jump") and doubleJump == false and not is_on_floor() and stateAttackStance == false:
 				velocity.y =  -jumpSpeed/1.3
 				doubleJump = true
+				doublejumpSfx.play()
 				
 	#animasi
 		if is_on_floor() == false and stateAttackStance == false:
+			
+			if walkSfx.is_playing() == true:
+				walkSfx.stop()
+			if sprintSfx.is_playing() == true:
+				sprintSfx.stop()
+				
 			if velocity.y < 0:
 				sprite.play("jump")
 			else:
 				sprite.play("fall")
-		if (velocity.x > 200 or velocity.x < -200) and is_on_floor():
+		if (velocity.x > 200 or velocity.x < -200) and is_on_floor() and stateAttackStance == false:
 			sprite.play("sprint")
-		elif (velocity.x < 200 or velocity.x > -200) and velocity.x != 0 and is_on_floor():
+			
+			if walkSfx.is_playing() == true:
+				walkSfx.stop()
+			if sprintSfx.is_playing() == false:
+				sprintSfx.play()
+				
+		elif (velocity.x < 200 or velocity.x > -200) and velocity.x != 0 and is_on_floor() and stateAttackStance == false:
 			sprite.play("walk")
+			
+			if sprintSfx.is_playing() == true:
+				sprintSfx.stop()
+			if walkSfx.is_playing() == false:
+				walkSfx.play()
 			
 	#attack
 		stateAttackStance = false
 		if Input.is_action_pressed("attack"):
+			
+			if walkSfx.is_playing() == true:
+				print("sound stop (walk)")
+				walkSfx.stop()
+			if sprintSfx.is_playing() == true:
+				print("sound stop (sprint)")
+				sprintSfx.stop()
+				
 			stateAttackStance = true
 			sprite.play("attack")
 			
@@ -268,6 +308,12 @@ func _physics_process(delta):
 	
 #dying ragdoll
 	elif stateDead == true and dissapear == false:
+		
+		if walkSfx.is_playing() == true:
+			walkSfx.stop()
+		if sprintSfx.is_playing() == true:
+			sprintSfx.stop()
+			
 		sprite.play("damage")
 		if velocity.y < gravitasiMax:
 			velocity.y += gravitasi
@@ -291,8 +337,10 @@ func _physics_process(delta):
 				sprite.play("fall")
 		if (velocity.x > 200 or velocity.x < -200) and is_on_floor():
 			sprite.play("sprint")
+			
 		elif (velocity.x < 200 or velocity.x > -200) and velocity.x != 0 and is_on_floor():
 			sprite.play("walk")
+			
 		
 		energyRegen(regenSpeed)
 		

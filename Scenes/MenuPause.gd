@@ -9,6 +9,7 @@ var paused: = false setget set_paused
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
+		$UseSfx.play()
 		self.paused = not paused
 		pause_controls.visible = false
 		scene_tree.set_input_as_handled()

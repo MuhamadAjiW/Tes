@@ -81,9 +81,11 @@ func _process(delta):
 		if above.overlaps_body(player):
 			if parent.is_on_floor():
 				parent.velocity.y += -500
+				parent.jumpSfx.play()
 		
 		elif (obstacle.get_overlapping_bodies().size() > 0 and wall.get_overlapping_bodies().size() == 0 and obstacle.overlaps_body(player) == false):
 			if parent.is_on_floor():
 				parent.velocity.y += -500
+				parent.jumpSfx.play()
 	
 

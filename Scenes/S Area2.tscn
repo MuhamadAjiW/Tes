@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Enemy/EnemyIdle1.png" type="Texture" id=2]
@@ -12,7 +12,7 @@
 [ext_resource path="res://Scenes/EnemyHitbox.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Survival.gd" type="Script" id=12]
-[ext_resource path="res://Graphics/Environment/Hole.png" type="Texture" id=13]
+[ext_resource path="res://Graphics/Environment/Hole Icy.png" type="Texture" id=13]
 [ext_resource path="res://Fonts/IndieFlower-Regular.ttf" type="DynamicFontData" id=14]
 [ext_resource path="res://Graphics/Enemy/EnemyWalk2.png" type="Texture" id=15]
 [ext_resource path="res://Scenes/Camera switch.gd" type="Script" id=16]
@@ -31,13 +31,21 @@
 [ext_resource path="res://Graphics/Enemy/EnemyAware.png" type="Texture" id=29]
 [ext_resource path="res://Scenes/FirstEnemy.gd" type="Script" id=30]
 [ext_resource path="res://Graphics/Background/Background.png" type="Texture" id=31]
+[ext_resource path="res://Audio/Walldrag.wav" type="AudioStream" id=32]
+[ext_resource path="res://Audio/FootstepsQuick.wav" type="AudioStream" id=33]
+[ext_resource path="res://Audio/Footsteps.wav" type="AudioStream" id=34]
+[ext_resource path="res://Audio/Screech3.wav" type="AudioStream" id=35]
+[ext_resource path="res://Audio/Screech1.wav" type="AudioStream" id=36]
+[ext_resource path="res://Audio/Jump.wav" type="AudioStream" id=37]
+[ext_resource path="res://Audio/Screech2.wav" type="AudioStream" id=38]
+[ext_resource path="res://Audio/Hit.wav" type="AudioStream" id=39]
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=1]
 size = 20
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 14 )
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=2]
 resource_name = "New Anim"
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:modulate")
@@ -52,60 +60,45 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=17]
+[sub_resource type="DynamicFont" id=3]
 size = 26
 font_data = ExtResource( 14 )
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=4]
 size = 36
 font_data = ExtResource( 14 )
 
-[sub_resource type="DynamicFont" id=19]
+[sub_resource type="DynamicFont" id=5]
 size = 24
 font_data = ExtResource( 14 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 436.495, 231.5 )
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=7]
 radius = 231.828
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 24, 10 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 24, 8 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 16, 232 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 192, 232 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 72, 32 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=13]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 22 ) ],
 "loop": true,
 "name": "default",
 "speed": 2.0
-}, {
-"frames": [ ExtResource( 29 ) ],
-"loop": false,
-"name": "aware",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 28 ), ExtResource( 24 ) ],
-"loop": true,
-"name": "sprint",
-"speed": 4.0
-}, {
-"frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "walk",
-"speed": 3.0
 }, {
 "frames": [ ExtResource( 25 ) ],
 "loop": false,
@@ -117,13 +110,28 @@ animations = [ {
 "name": "jump",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 28 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "sprint",
+"speed": 4.0
+}, {
 "frames": [ ExtResource( 23 ) ],
 "loop": false,
 "name": "damage",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "walk",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 29 ) ],
+"loop": false,
+"name": "aware",
+"speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=14]
 length = 0.1
 step = 0.01
 tracks/0/type = "value"
@@ -139,7 +147,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=15]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -154,7 +162,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=16]
 length = 0.2
 loop = true
 step = 0.01
@@ -171,7 +179,7 @@ tracks/0/keys = {
 "values": [ true, false, true ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=17]
 length = 0.2
 step = 0.01
 tracks/0/type = "value"
@@ -199,11 +207,11 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="CapsuleShape2D" id=13]
+[sub_resource type="CapsuleShape2D" id=18]
 radius = 20.2777
 height = 7.07201
 
-[sub_resource type="CapsuleShape2D" id=14]
+[sub_resource type="CapsuleShape2D" id=19]
 radius = 20.2777
 height = 7.07198
 
@@ -490,7 +498,7 @@ margin_left = 6.96997
 margin_top = -5.21021
 margin_right = 69.97
 margin_bottom = 24.7898
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Points :"
 align = 1
@@ -504,7 +512,7 @@ margin_left = 72.0
 margin_top = -5.21021
 margin_right = 135.0
 margin_bottom = 24.7898
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0"
 valign = 1
@@ -513,7 +521,7 @@ __meta__ = {
 }
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="CanvasLayer"]
-"anims/New Anim" = SubResource( 16 )
+"anims/New Anim" = SubResource( 2 )
 
 [node name="WaveClear" type="Node2D" parent="."]
 pause_mode = 2
@@ -547,7 +555,7 @@ margin_left = 8.0
 margin_top = 36.7593
 margin_right = 283.0
 margin_bottom = 89.7593
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "choose one :"
 __meta__ = {
@@ -558,7 +566,7 @@ __meta__ = {
 margin_left = 8.0
 margin_right = 283.0
 margin_bottom = 53.0
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Wave cleared"
 __meta__ = {
@@ -575,7 +583,7 @@ margin_top = -14.5612
 margin_right = 164.41
 margin_bottom = 27.4388
 rect_pivot_offset = Vector2( 144, 80 )
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0.807843, 0.807843, 0.807843, 1 )
 text = "Health +1"
@@ -595,7 +603,7 @@ margin_top = 25.4388
 margin_right = 164.41
 margin_bottom = 67.4388
 rect_pivot_offset = Vector2( 144, 80 )
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0.807843, 0.807843, 0.807843, 1 )
 text = "Regen +10%"
@@ -615,7 +623,7 @@ margin_top = 65.2286
 margin_right = 164.41
 margin_bottom = 107.229
 rect_pivot_offset = Vector2( 144, 80 )
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0.807843, 0.807843, 0.807843, 1 )
 text = "energy +20"
@@ -635,7 +643,7 @@ margin_top = 105.439
 margin_right = 164.41
 margin_bottom = 147.439
 rect_pivot_offset = Vector2( 144, 80 )
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0.807843, 0.807843, 0.807843, 1 )
 text = "Restore health"
@@ -652,7 +660,7 @@ position = Vector2( 1224, 106.683 )
 next_scene = "res://Scenes/S Area1.tscn"
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 595.91, 79.7898 )
+position = Vector2( 595.91, 74.7898 )
 texture = ExtResource( 13 )
 
 [node name="Enemy1" type="KinematicBody2D" parent="."]
@@ -675,7 +683,7 @@ collision_mask = 131073
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1/AI/Total"]
 position = Vector2( -4.09039, 0.499512 )
-shape = SubResource( 1 )
+shape = SubResource( 6 )
 
 [node name="Awareness" type="Area2D" parent="Enemy1/AI"]
 collision_layer = 131073
@@ -683,7 +691,7 @@ collision_mask = 131073
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1/AI/Awareness"]
 position = Vector2( 0.404541, 0.499512 )
-shape = SubResource( 2 )
+shape = SubResource( 7 )
 
 [node name="Wall" type="Area2D" parent="Enemy1/AI"]
 position = Vector2( 0.404541, -47.5005 )
@@ -692,11 +700,11 @@ collision_mask = 4
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Enemy1/AI/Wall"]
 position = Vector2( 32, -40 )
-shape = SubResource( 3 )
+shape = SubResource( 8 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Enemy1/AI/Wall"]
 position = Vector2( -40, -40 )
-shape = SubResource( 3 )
+shape = SubResource( 8 )
 
 [node name="Obstacle" type="Area2D" parent="Enemy1/AI"]
 collision_layer = 4
@@ -704,11 +712,11 @@ collision_mask = 4
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Enemy1/AI/Obstacle"]
 position = Vector2( 32.4045, 0.499512 )
-shape = SubResource( 4 )
+shape = SubResource( 9 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemy1/AI/Obstacle"]
 position = Vector2( -39.5955, 0.499512 )
-shape = SubResource( 4 )
+shape = SubResource( 9 )
 
 [node name="RightClose" type="Area2D" parent="Enemy1/AI"]
 collision_layer = 131073
@@ -716,7 +724,7 @@ collision_mask = 131073
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1/AI/RightClose"]
 position = Vector2( 32.4045, 0.499512 )
-shape = SubResource( 5 )
+shape = SubResource( 10 )
 
 [node name="LeftClose" type="Area2D" parent="Enemy1/AI"]
 collision_layer = 131073
@@ -724,7 +732,7 @@ collision_mask = 131073
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1/AI/LeftClose"]
 position = Vector2( -39.5955, 0.499512 )
-shape = SubResource( 5 )
+shape = SubResource( 10 )
 
 [node name="Right" type="Area2D" parent="Enemy1/AI"]
 collision_layer = 131073
@@ -732,7 +740,7 @@ collision_mask = 131073
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemy1/AI/Right"]
 position = Vector2( 240.405, 0.499512 )
-shape = SubResource( 6 )
+shape = SubResource( 11 )
 
 [node name="Left" type="Area2D" parent="Enemy1/AI"]
 collision_layer = 131073
@@ -740,18 +748,19 @@ collision_mask = 131073
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemy1/AI/Left"]
 position = Vector2( -247.595, 0.499512 )
-shape = SubResource( 6 )
+shape = SubResource( 11 )
 
 [node name="Up" type="Area2D" parent="Enemy1/AI"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1/AI/Up"]
 position = Vector2( 0.404541, -71.5005 )
-shape = SubResource( 7 )
+shape = SubResource( 12 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Enemy1"]
 position = Vector2( 0.404541, 5.01933 )
 scale = Vector2( 1.17111, 1.17111 )
-frames = SubResource( 8 )
+frames = SubResource( 13 )
+frame = 1
 playing = true
 
 [node name="HitTimer" type="Timer" parent="Enemy1"]
@@ -759,10 +768,10 @@ wait_time = 0.5
 one_shot = true
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="Enemy1"]
-anims/Damage = SubResource( 9 )
-anims/Dead = SubResource( 10 )
-anims/Invulnerable = SubResource( 11 )
-anims/Neutral = SubResource( 12 )
+anims/Damage = SubResource( 14 )
+anims/Dead = SubResource( 15 )
+anims/Invulnerable = SubResource( 16 )
+anims/Neutral = SubResource( 17 )
 
 [node name="Area2D" type="Area2D" parent="Enemy1"]
 position = Vector2( 3.05176e-05, -0.0883789 )
@@ -772,7 +781,7 @@ script = ExtResource( 10 )
 
 [node name="Coll" type="CollisionShape2D" parent="Enemy1/Area2D"]
 position = Vector2( -3.83334, 6.68439 )
-shape = SubResource( 13 )
+shape = SubResource( 18 )
 
 [node name="DeathTimer" type="Timer" parent="Enemy1"]
 wait_time = 2.0
@@ -780,7 +789,34 @@ one_shot = true
 
 [node name="Coll" type="CollisionShape2D" parent="Enemy1"]
 position = Vector2( -3.83331, 6.59601 )
-shape = SubResource( 14 )
+shape = SubResource( 19 )
+
+[node name="Sound" type="Node2D" parent="Enemy1"]
+position = Vector2( -3.83331, 6.59601 )
+
+[node name="Screech3" type="AudioStreamPlayer" parent="Enemy1/Sound"]
+stream = ExtResource( 35 )
+
+[node name="Screech2" type="AudioStreamPlayer" parent="Enemy1/Sound"]
+stream = ExtResource( 38 )
+
+[node name="Screech1" type="AudioStreamPlayer" parent="Enemy1/Sound"]
+stream = ExtResource( 36 )
+
+[node name="StepQuick" type="AudioStreamPlayer" parent="Enemy1/Sound"]
+stream = ExtResource( 33 )
+volume_db = -5.0
+
+[node name="Step" type="AudioStreamPlayer" parent="Enemy1/Sound"]
+stream = ExtResource( 34 )
+volume_db = -5.0
+
+[node name="Jump" type="AudioStreamPlayer" parent="Enemy1/Sound"]
+stream = ExtResource( 37 )
+volume_db = 7.0
+
+[node name="Hit" type="AudioStreamPlayer" parent="Enemy1/Sound"]
+stream = ExtResource( 39 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1224, 106.683 )
@@ -801,6 +837,9 @@ collision_layer = 917509
 collision_mask = 917509
 format = 1
 tile_data = PoolIntArray( -131067, 4, 0, -131066, 4, 0, -65531, 4, 0, -65530, 4, 0, 5, 4, 0, 6, 4, 0, 65541, 4, 0, 65542, 4, 0, 131077, 4, 0, 131078, 4, 0, 196613, 4, 0, 196614, 4, 0 )
+
+[node name="moveSfx" type="AudioStreamPlayer" parent="Wall Moving1"]
+stream = ExtResource( 32 )
 
 [node name="TileMap1" type="TileMap" parent="."]
 tile_set = SubResource( 28 )
@@ -859,6 +898,9 @@ collision_layer = 4
 collision_mask = 917505
 format = 1
 tile_data = PoolIntArray( 1376251, -1610612735, 0, 1376252, -1610612735, 0, 1376253, -1610612735, 0, 1376254, -1610612735, 0, 1376255, -1610612735, 0, 1441787, -1610612735, 0, 1441788, -1610612735, 0, 1441789, -1610612735, 0, 1441790, -1610612735, 0, 1441791, -1610612735, 0 )
+
+[node name="moveSfx" type="AudioStreamPlayer" parent="Wall Moving"]
+stream = ExtResource( 32 )
 
 [node name="spikedWall" type="TileMap" parent="."]
 tile_set = SubResource( 33 )

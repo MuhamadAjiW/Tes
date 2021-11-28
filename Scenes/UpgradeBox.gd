@@ -17,11 +17,13 @@ func _input(event):
 					condition = false
 					$"/root/Global".player.Pause._on_restore_pause()
 					$"/root/Global".player.buff()
+					$UseSfx.play()
+					yield(get_tree().create_timer(0.4), "timeout")
 					usedbox.position = self.position
 					get_parent().add_child(usedbox)
 					get_parent().move_child(usedbox, 1)
-					
 					queue_free()
+					
 				elif get_tree().paused == false:
 					condition = true
 					get_tree().paused = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Graphics/Environment/sign.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/DoorMovements.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Scenes/Dummy.gd" type="Script" id=15]
 [ext_resource path="res://Graphics/Enemy/EnemyIdle1.png" type="Texture" id=16]
 [ext_resource path="res://Graphics/Background/Background.png" type="Texture" id=17]
+[ext_resource path="res://Audio/Sign.wav" type="AudioStream" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -308,6 +309,9 @@ margin_bottom = 61.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Dash to attack"
+
+[node name="UseSfx" type="AudioStreamPlayer" parent="Sign3"]
+stream = ExtResource( 18 )
 
 [node name="DoorUnder" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1049.86, 714.649 )

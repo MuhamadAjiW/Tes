@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var durationTimer = $timer
+onready var dashSfx = get_parent().get_node("Sound/Dash")
 var collision = false
 
 signal dash_stopped()
@@ -8,6 +9,7 @@ signal upDash_stopped()
 signal downDash_stopped()
 
 func dash_start(duration):
+	dashSfx.play(0)
 	collision = false
 	durationTimer.wait_time = duration
 	durationTimer.start()
@@ -21,6 +23,7 @@ func dash_start(duration):
 	get_parent().set_collision_mask(1)
 
 func upDash_start(duration):
+	dashSfx.play(0)
 	collision = false
 	durationTimer.wait_time = duration
 	durationTimer.start()
@@ -34,6 +37,7 @@ func upDash_start(duration):
 	get_parent().set_collision_mask(1)
 	
 func downDash_start(duration):
+	dashSfx.play(0)
 	collision = false
 	durationTimer.wait_time = duration
 	durationTimer.start()

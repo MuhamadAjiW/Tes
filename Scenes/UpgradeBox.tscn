@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Graphics/Environment/Upgrade.png" type="Texture" id=1]
 [ext_resource path="res://Fonts/IndieFlower-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scenes/UpgradeBox.gd" type="Script" id=3]
+[ext_resource path="res://Audio/Use.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -120,6 +121,9 @@ align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="UseSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="button_up" from="CanvasLayer/ColorRect/Choice 1" to="." method="_on_Choice_1_button_up"]
 [connection signal="button_up" from="CanvasLayer/ColorRect/Choice 2" to="." method="_on_Choice_2_button_up"]

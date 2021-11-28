@@ -91,10 +91,12 @@ func _process(delta):
 				if above.overlaps_body($"/root/Global".player):
 					if parent.is_on_floor():
 						parent.velocity.y += -500
+						parent.jumpSfx.play()
 				
 				elif (obstacle.get_overlapping_bodies().size() > 0 and wall.get_overlapping_bodies().size() == 0 and obstacle.overlaps_body($"/root/Global".player) == false):
 					if parent.is_on_floor():
 						parent.velocity.y += -500
+						parent.jumpSfx.play()
 			
 			elif not total.overlaps_body($"/root/Global".player):
 				if parent.sprite.flip_h == false:

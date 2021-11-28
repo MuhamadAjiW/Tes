@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Screech2.wav-abeef2f026535fcb80df66ad19a671e4.sample"
+
+[deps]
+
+source_file="res://Audio/Screech2.wav"
+dest_files=[ "res://.import/Screech2.wav-abeef2f026535fcb80df66ad19a671e4.sample" ]
+
+[params]
+
+force/8_bit=true
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=false
+compress/mode=0

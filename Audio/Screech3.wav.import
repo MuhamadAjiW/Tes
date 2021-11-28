@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Screech3.wav-19da1c5479f1f31c0b5da163deb64194.sample"
+
+[deps]
+
+source_file="res://Audio/Screech3.wav"
+dest_files=[ "res://.import/Screech3.wav-19da1c5479f1f31c0b5da163deb64194.sample" ]
+
+[params]
+
+force/8_bit=true
+force/mono=true
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -13,12 +13,14 @@ func _input(event):
 				text_overlay.visible = false
 				condition = false
 				$"/root/Global".player.Pause._on_restore_pause()
+				$UseSfx.play()
 			elif get_tree().paused == false:
 				condition = true
 				get_tree().paused = true
 				scene_tree.set_input_as_handled()
 				text_overlay.visible = true
 				$"/root/Global".player.Pause._on_pause_disable()
+				$UseSfx.play()
 		
 		if event.is_action_pressed("pause") and condition == true:
 			get_tree().paused = false
@@ -26,4 +28,5 @@ func _input(event):
 			condition = false
 			yield(get_tree().create_timer(0.1), "timeout")
 			$"/root/Global".player.Pause._on_restore_pause()
+			$UseSfx.play()
 			
