@@ -699,6 +699,9 @@ position = Vector2( -1048, 1552 )
 [node name="Spawnpoint Botright" type="Node2D" parent="Spawnpoints"]
 position = Vector2( 919.07, 1552 )
 
+[node name="Spawnpoint Top" type="Node2D" parent="Spawnpoints"]
+position = Vector2( -81.839, 519.754 )
+
 [node name="Wall Moving" type="KinematicBody2D" parent="."]
 collision_layer = 4
 collision_mask = 917505

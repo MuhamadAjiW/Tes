@@ -21,32 +21,32 @@
 [ext_resource path="res://Audio/Screech2.wav" type="AudioStream" id=20]
 [ext_resource path="res://Audio/Hit.wav" type="AudioStream" id=21]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 436.495, 231.5 )
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id=2]
 radius = 231.828
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 24, 10 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24, 8 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 16, 232 )
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 192, 232 )
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 72, 32 )
 
-[sub_resource type="StreamTexture" id=5]
+[sub_resource type="StreamTexture" id=8]
 flags = 4
 load_path = "res://.import/EnemyRage1.png-e750de623f29106b2ed12c19625a7e58.stex"
 
-[sub_resource type="SpriteFrames" id=13]
+[sub_resource type="SpriteFrames" id=9]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
@@ -68,7 +68,7 @@ animations = [ {
 "name": "sprint",
 "speed": 4.0
 }, {
-"frames": [ SubResource( 5 ), ExtResource( 11 ) ],
+"frames": [ SubResource( 8 ), ExtResource( 11 ) ],
 "loop": false,
 "name": "fall",
 "speed": 5.0
@@ -84,7 +84,7 @@ animations = [ {
 "speed": 3.0
 } ]
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=10]
 length = 0.1
 step = 0.01
 tracks/0/type = "value"
@@ -100,7 +100,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=11]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:modulate")
@@ -115,7 +115,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=12]
 length = 0.2
 loop = true
 step = 0.01
@@ -132,7 +132,7 @@ tracks/0/keys = {
 "values": [ true, false, true ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=13]
 length = 0.2
 step = 0.01
 tracks/0/type = "value"
@@ -160,10 +160,10 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=18]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 19.9547, 24.5734 )
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 19.7187, 24.8094 )
 
 [node name="Enemy1" type="KinematicBody2D"]
@@ -186,7 +186,7 @@ collision_mask = 131073
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AI/Total"]
 position = Vector2( -4.09039, 0.499512 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="Awareness" type="Area2D" parent="AI"]
 collision_layer = 131073
@@ -194,7 +194,7 @@ collision_mask = 131073
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AI/Awareness"]
 position = Vector2( 0.404541, 0.499512 )
-shape = SubResource( 7 )
+shape = SubResource( 2 )
 
 [node name="Wall" type="Area2D" parent="AI"]
 position = Vector2( 0.404541, -47.5005 )
@@ -203,11 +203,11 @@ collision_mask = 4
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="AI/Wall"]
 position = Vector2( 32, -40 )
-shape = SubResource( 8 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="AI/Wall"]
 position = Vector2( -40, -40 )
-shape = SubResource( 8 )
+shape = SubResource( 3 )
 
 [node name="Obstacle" type="Area2D" parent="AI"]
 collision_layer = 4
@@ -215,11 +215,11 @@ collision_mask = 4
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="AI/Obstacle"]
 position = Vector2( 32.4045, 0.499512 )
-shape = SubResource( 9 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="AI/Obstacle"]
 position = Vector2( -39.5955, 0.499512 )
-shape = SubResource( 9 )
+shape = SubResource( 4 )
 
 [node name="RightClose" type="Area2D" parent="AI"]
 collision_layer = 131073
@@ -227,7 +227,7 @@ collision_mask = 131073
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AI/RightClose"]
 position = Vector2( 32.4045, 0.499512 )
-shape = SubResource( 10 )
+shape = SubResource( 5 )
 
 [node name="LeftClose" type="Area2D" parent="AI"]
 collision_layer = 131073
@@ -235,7 +235,7 @@ collision_mask = 131073
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AI/LeftClose"]
 position = Vector2( -39.5955, 0.499512 )
-shape = SubResource( 10 )
+shape = SubResource( 5 )
 
 [node name="Right" type="Area2D" parent="AI"]
 collision_layer = 131073
@@ -243,7 +243,7 @@ collision_mask = 131073
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="AI/Right"]
 position = Vector2( 240.405, 0.499512 )
-shape = SubResource( 11 )
+shape = SubResource( 6 )
 
 [node name="Left" type="Area2D" parent="AI"]
 collision_layer = 131073
@@ -251,18 +251,18 @@ collision_mask = 131073
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="AI/Left"]
 position = Vector2( -247.595, 0.499512 )
-shape = SubResource( 11 )
+shape = SubResource( 6 )
 
 [node name="Up" type="Area2D" parent="AI"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AI/Up"]
 position = Vector2( 0.404541, -71.5005 )
-shape = SubResource( 12 )
+shape = SubResource( 7 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 6.59601 )
 scale = Vector2( 1.17111, 1.17111 )
-frames = SubResource( 13 )
+frames = SubResource( 9 )
 animation = "jump"
 frame = 1
 playing = true
@@ -272,10 +272,10 @@ wait_time = 0.5
 one_shot = true
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="."]
-anims/Damage = SubResource( 14 )
-anims/Dead = SubResource( 15 )
-anims/Invulnerable = SubResource( 16 )
-anims/Neutral = SubResource( 17 )
+anims/Damage = SubResource( 10 )
+anims/Dead = SubResource( 11 )
+anims/Invulnerable = SubResource( 12 )
+anims/Neutral = SubResource( 13 )
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 3.05176e-05, -0.0883789 )
@@ -285,7 +285,7 @@ script = ExtResource( 1 )
 
 [node name="Coll" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -3.83334, 6.68439 )
-shape = SubResource( 18 )
+shape = SubResource( 14 )
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -293,7 +293,7 @@ one_shot = true
 
 [node name="Coll" type="CollisionShape2D" parent="."]
 position = Vector2( -3.83331, 6.59601 )
-shape = SubResource( 19 )
+shape = SubResource( 15 )
 
 [node name="Sound" type="Node2D" parent="."]
 position = Vector2( -3.83331, 6.59601 )

@@ -4,7 +4,9 @@ onready var spawnpoint1 = $"Spawnpoints/Spawnpoint Botleft"
 onready var spawnpoint2 = $"Spawnpoints/Spawnpoint Botright"
 onready var spawnpoint3 = $"Spawnpoints/Spawnpoint Topleft"
 onready var spawnpoint4 = $"Spawnpoints/Spawnpoint Topright"
+onready var spawnpoint5 = $"Spawnpoints/Spawnpoint Top"
 var scene = load("res://Scenes/EnemySurvival1.tscn")
+var scene2 = load("res://Scenes/EnemyBoss.tscn")
 var powerup_scene = load("res://Scenes/PowerupBox.tscn")
 
 var start = false
@@ -36,7 +38,7 @@ func round_reset():
 func _on_WaveClear_chosen():
 	chosen = true
 	
-	if wave == 5:
+	if wave == 6:
 		$Interactive/EscapeDoor/Sprite.visible = false
 		$Interactive/EscapeDoor/Sprite2.visible = true
 		$Interactive/EscapeDoor/UnlockedSfx.play()
@@ -70,6 +72,15 @@ func spawn(x):
 			enemy.position.y = spawnpoint4.position.y
 		add_child(enemy)
 		move_child(enemy, 2)
+		yield(get_tree().create_timer(0.5), "timeout")
+	print("spawning ", x/10, " Toughnuts")
+	for i in range(x/10):
+		print("spawning ", i+1)
+		var enemy2 = scene2.instance()
+		enemy2.position.x = spawnpoint5.position.x
+		enemy2.position.y = spawnpoint5.position.y
+		add_child(enemy2)
+		move_child(enemy2, 2)
 		yield(get_tree().create_timer(0.5), "timeout")
 
 func _process(delta):

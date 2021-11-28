@@ -635,6 +635,7 @@ shape = SubResource( 11 )
 position = Vector2( 0, 6.59601 )
 scale = Vector2( 1.17111, 1.17111 )
 frames = SubResource( 13 )
+frame = 1
 playing = true
 
 [node name="HitTimer" type="Timer" parent="Enemy1"]
@@ -970,6 +971,9 @@ position = Vector2( -1048, 1552 )
 
 [node name="Spawnpoint Botright" type="Node2D" parent="Spawnpoints"]
 position = Vector2( 919.07, 1552 )
+
+[node name="Spawnpoint Top" type="Node2D" parent="Spawnpoints"]
+position = Vector2( -81.839, 519.754 )
 
 [node name="Wall Moving" type="KinematicBody2D" parent="."]
 collision_layer = 4

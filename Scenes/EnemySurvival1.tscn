@@ -75,21 +75,81 @@ animations = [ {
 "speed": 3.0
 } ]
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=13]
 length = 0.1
 step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.01, 0.05, 0.09 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=14]
 length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=15]
 length = 0.2
 loop = true
 step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ true, false, true ]
+}
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=16]
 length = 0.2
 step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 19.9026, 25.4716 )
@@ -166,9 +226,11 @@ one_shot = true
 one_shot = true
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 0.9279, 0.9279, 1 )
 position = Vector2( 0, 1.11609 )
 scale = Vector2( 1.17111, 1.17111 )
 frames = SubResource( 6 )
+frame = 1
 playing = true
 
 [node name="HitTimer" type="Timer" parent="."]
@@ -176,10 +238,10 @@ wait_time = 0.5
 one_shot = true
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="."]
-anims/Damage = SubResource( 7 )
-anims/Dead = SubResource( 8 )
-anims/Invulnerable = SubResource( 9 )
-anims/Neutral = SubResource( 10 )
+anims/Damage = SubResource( 13 )
+anims/Dead = SubResource( 14 )
+anims/Invulnerable = SubResource( 15 )
+anims/Neutral = SubResource( 16 )
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 3.05176e-05, -0.0883789 )
