@@ -28,19 +28,26 @@ func initiate():
 	$CanvasLayer/EffectsPlayer.play("New Anim")
 
 func round_reset():
+	$WaveClear/CanvasLayer/ColorRect/Wave.text = str(wave - 1)
 	$WaveClear.upgrades()
 	print("next enemy: ",enemycount)
 	spawning = true
 
 func _on_WaveClear_chosen():
 	chosen = true
+	
+	if wave == 5:
+		$Interactive/EscapeDoor/Sprite.visible = false
+		$Interactive/EscapeDoor/Sprite2.visible = true
+		$Interactive/EscapeDoor/UnlockedSfx.play()
+	
 	powerup_roll = randi()%10+1
 	if powerup_roll == 10:
 		var power_up = powerup_scene.instance()
-		power_up.position = get_node("WaveClear").get_child(1).position
-		get_node("WaveClear").get_child(1).queue_free()
-		get_node("WaveClear").add_child(power_up)
-		get_node("WaveClear").move_child(power_up, 1)
+		power_up.position = get_node("Interactive").get_child(0).position
+		get_node("Interactive").get_child(0).queue_free()
+		get_node("Interactive").add_child(power_up)
+		get_node("Interactive").move_child(power_up, 0)
 
 func spawn(x):
 	spawning = false
@@ -71,7 +78,7 @@ func _process(delta):
 		if spawning == true and chosen == true:
 			spawn(enemycount)
 			chosen = false
-		if get_child_count() == 8:
+		if get_child_count() == 9:
 			print("wave done!")
 			wave += 1
 			enemycount = 1 + wave*2

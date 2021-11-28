@@ -1,0 +1,692 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://Fonts/IndieFlower-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Graphics/Background/Background.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/TextAnimation.gd" type="Script" id=3]
+[ext_resource path="res://Graphics/Background/Nivalis Pool 1.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Enemy/EnemyIdle1.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/Story backgrounds/Drawing 1.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=7]
+size = 24
+outline_size = 1
+outline_color = Color( 0, 0, 0, 0 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.537255, 0.662745, 0.847059, 1 ), Color( 0.584314, 0.219608, 0, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=10]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=11]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "New Anim"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Story Bits" type="Node2D"]
+modulate = Color( 1, 1, 1, 0 )
+script = ExtResource( 3 )
+next_scene = "res://Scenes/S Area1.tscn"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+margin_right = 1368.0
+margin_bottom = 768.0
+color = Color( 0.537255, 0.662745, 0.847059, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Sprite" parent="CanvasLayer/ColorRect2"]
+position = Vector2( 682.837, 1532.73 )
+scale = Vector2( 1, -4 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect2/Background"]
+"anims/New Anim" = SubResource( 1 )
+
+[node name="Background2" type="Sprite" parent="CanvasLayer/ColorRect2"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 685.622, 1151.99 )
+scale = Vector2( 1, 3 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect2/Background2"]
+"anims/New Anim" = SubResource( 2 )
+
+[node name="Background3" type="Sprite" parent="CanvasLayer/ColorRect2"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 682.811, 384 )
+scale = Vector2( 1.00412, 1 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect2/Background3"]
+"anims/New Anim" = SubResource( 3 )
+
+[node name="Background4" type="Sprite" parent="CanvasLayer/ColorRect2"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 760, 672 )
+scale = Vector2( 20.9798, 20.8081 )
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect2/Background4"]
+"anims/New Anim" = SubResource( 4 )
+
+[node name="Background5" type="Sprite" parent="CanvasLayer/ColorRect2"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 699.284, 379.946 )
+scale = Vector2( 1.02729, 1.01056 )
+texture = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect2/Background5"]
+"anims/New Anim" = SubResource( 5 )
+
+[node name="Background6" type="ColorRect" parent="CanvasLayer/ColorRect2"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -3.0
+margin_top = -8.0
+margin_right = 1368.0
+margin_bottom = 768.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect2/Background6"]
+"anims/New Anim" = SubResource( 6 )
+
+[node name="Label7" type="Label" parent="CanvasLayer/ColorRect2"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.059
+anchor_top = 0.21
+anchor_right = 0.059
+anchor_bottom = 0.21
+margin_left = 1119.29
+margin_top = 566.72
+margin_right = 1280.29
+margin_bottom = 602.72
+custom_fonts/font = SubResource( 7 )
+text = "Press any key..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect2/Label7"]
+"anims/New Anim" = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect2"]
+"anims/New Anim" = SubResource( 9 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+margin_top = 592.0
+margin_right = 1368.0
+margin_bottom = 768.0
+color = Color( 0, 0, 0, 0.329412 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 640.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "The sun had shone idly in the ashen sky."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label"]
+"anims/New Anim" = SubResource( 11 )
+
+[node name="Label2" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 640.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "The sun had shone idly in the ashen sky.
+While the clouds, they cry white dust,"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label2"]
+"anims/New Anim" = SubResource( 12 )
+
+[node name="Label3" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 640.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "The sun had shone idly in the ashen sky.
+While the clouds, they cry white dust,
+covering the land with vast snow."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label3"]
+"anims/New Anim" = SubResource( 13 )
+
+[node name="Label4" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 1885.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "No sound of birds was heard."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label4"]
+"anims/New Anim" = SubResource( 14 )
+
+[node name="Label5" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 640.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "No sound of birds was heard.
+Here, in Nivalis, what you’ll hear are the howling winds"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label5"]
+"anims/New Anim" = SubResource( 15 )
+
+[node name="Label6" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 640.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "No sound of birds was heard.
+Here, in Nivalis, what you’ll hear are the howling winds
+and distant chatters of the townsfolk. "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label6"]
+"anims/New Anim" = SubResource( 16 )
+
+[node name="Label7" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 792.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Yet, this very peaceful morning in Nivalis did not last long. "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label7"]
+"anims/New Anim" = SubResource( 17 )
+
+[node name="Label8" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 792.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "In the serene horizon near the waters, upon the arrival of a fisherman, a loud cry echoed through
+the mountains, and the pure white ground was suddenly tainted by a dark crimson pool. "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label8"]
+"anims/New Anim" = SubResource( 18 )
+
+[node name="Label9" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 1325.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "When the townsfolk came to see what happened, the fisherman stood still, 
+with glaring eyes and bloody hands."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label9"]
+"anims/New Anim" = SubResource( 19 )
+
+[node name="Label10" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 1325.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Shortly, all hell broke loose. "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label10"]
+"anims/New Anim" = SubResource( 20 )
+
+[node name="Label11" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 1325.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "The loving people of Nivalis were no longer human."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label11"]
+"anims/New Anim" = SubResource( 21 )
+
+[node name="Label12" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 2315.0
+margin_bottom = 209.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "The loving people of Nivalis were no longer human.
+They turned to beasts. Screaming, beating and gnawing at each other. They couldn’t tell apart their
+family from their foes. As if a plague, the savagery spread like wildfire.
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label12"]
+"anims/New Anim" = SubResource( 22 )
+
+[node name="Label13" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 2315.0
+margin_bottom = 209.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Time has passed since then"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label13"]
+"anims/New Anim" = SubResource( 23 )
+
+[node name="Label14" type="Label" parent="CanvasLayer/ColorRect"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 2315.0
+margin_bottom = 209.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Time for cleaning up"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect/Label14"]
+"anims/New Anim" = SubResource( 24 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

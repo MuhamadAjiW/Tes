@@ -230,10 +230,8 @@ func _physics_process(delta):
 		if Input.is_action_pressed("attack"):
 			
 			if walkSfx.is_playing() == true:
-				print("sound stop (walk)")
 				walkSfx.stop()
 			if sprintSfx.is_playing() == true:
-				print("sound stop (sprint)")
 				sprintSfx.stop()
 				
 			stateAttackStance = true

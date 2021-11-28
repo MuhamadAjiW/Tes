@@ -1,7 +1,7 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Graphics/Enemy/EnemyIdle1.png" type="Texture" id=1]
-[ext_resource path="res://Graphics/Enemy/EnemyDrop.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/EnemyRage1.png" type="Texture" id=2]
 [ext_resource path="res://Graphics/Enemy/EnemySprint2.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/Enemy/EnemyDamage.png" type="Texture" id=4]
 [ext_resource path="res://Graphics/Enemy/EnemyWalk2.png" type="Texture" id=5]
@@ -9,7 +9,7 @@
 [ext_resource path="res://Graphics/Enemy/EnemyIdle2.png" type="Texture" id=7]
 [ext_resource path="res://Graphics/Enemy/EnemyAware.png" type="Texture" id=8]
 [ext_resource path="res://Graphics/Enemy/EnemyWalk1.png" type="Texture" id=9]
-[ext_resource path="res://Graphics/Enemy/EnemyJump.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/Enemy/EnemyRage2.png" type="Texture" id=10]
 [ext_resource path="res://Scenes/EnemySurvival1.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/EnemyHitbox.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/AISurvival1.gd" type="Script" id=13]
@@ -33,21 +33,25 @@ extents = Vector2( 16, 904.5 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 59.2435, 32 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="StreamTexture" id=5]
+flags = 4
+load_path = "res://.import/EnemyRage1.png-e750de623f29106b2ed12c19625a7e58.stex"
+
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "default",
 "speed": 2.0
 }, {
+"frames": [ ExtResource( 8 ) ],
+"loop": false,
+"name": "aware",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": false,
 "name": "damage",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": false,
-"name": "fall",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 3 ) ],
@@ -55,7 +59,12 @@ animations = [ {
 "name": "sprint",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ SubResource( 5 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "fall",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 10 ) ],
 "loop": false,
 "name": "jump",
 "speed": 5.0
@@ -64,93 +73,28 @@ animations = [ {
 "loop": true,
 "name": "walk",
 "speed": 3.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": false,
-"name": "aware",
-"speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 0.1
 step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.01, 0.05, 0.09 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=7]
-length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
 
 [sub_resource type="Animation" id=8]
-length = 0.2
-loop = true
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ true, false, true ]
-}
+length = 0.4
 
 [sub_resource type="Animation" id=9]
 length = 0.2
+loop = true
 step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.01 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.01 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
 
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 19.9026, 25.4716 )
+[sub_resource type="Animation" id=10]
+length = 0.2
+step = 0.01
 
 [sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 19.9026, 25.4716 )
+
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 19.6924, 25.4716 )
 
 [node name="EnemySurvival1" type="KinematicBody2D"]
@@ -222,9 +166,9 @@ one_shot = true
 one_shot = true
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -0.561157 )
-scale = Vector2( 1.19565, 1.24213 )
-frames = SubResource( 5 )
+position = Vector2( 0, 1.11609 )
+scale = Vector2( 1.17111, 1.17111 )
+frames = SubResource( 6 )
 playing = true
 
 [node name="HitTimer" type="Timer" parent="."]
@@ -232,10 +176,10 @@ wait_time = 0.5
 one_shot = true
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="."]
-anims/Damage = SubResource( 6 )
-anims/Dead = SubResource( 7 )
-anims/Invulnerable = SubResource( 8 )
-anims/Neutral = SubResource( 9 )
+anims/Damage = SubResource( 7 )
+anims/Dead = SubResource( 8 )
+anims/Invulnerable = SubResource( 9 )
+anims/Neutral = SubResource( 10 )
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 3.05176e-05, -0.0883789 )
@@ -245,7 +189,7 @@ script = ExtResource( 12 )
 
 [node name="Coll" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -3.06677, 1.38318 )
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -253,7 +197,7 @@ one_shot = true
 
 [node name="Coll" type="CollisionShape2D" parent="."]
 position = Vector2( -3.24347, 1.2948 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 
 [node name="Sound" type="Node2D" parent="."]
 position = Vector2( -7.66663, 13.1921 )

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/ReturnButton.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Background.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/StartButton.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/ControlButton.gd" type="Script" id=3]
 [ext_resource path="res://Graphics/theme.tres" type="Theme" id=4]
 [ext_resource path="res://Fonts/IndieFlower-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Audio/Sign.wav" type="AudioStream" id=6]

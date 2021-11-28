@@ -9,7 +9,7 @@ var condition = false
 
 func _input(event):
 	if visible == true:
-		if overlaps_body($"/root/Global".player):
+		if overlaps_body($"/root/Global".player) and $"/root/Global".player.stateDead == false:
 			if event.is_action_pressed("dive"):
 				if condition == true:
 					get_tree().paused = false
@@ -17,11 +17,11 @@ func _input(event):
 					condition = false
 					$"/root/Global".player.Pause._on_restore_pause()
 					$"/root/Global".player.buff()
-					$UseSfx.play()
-					yield(get_tree().create_timer(0.4), "timeout")
 					usedbox.position = self.position
 					get_parent().add_child(usedbox)
 					get_parent().move_child(usedbox, 1)
+					$UseSfx.play()
+					yield(get_tree().create_timer(0.4), "timeout")
 					queue_free()
 					
 				elif get_tree().paused == false:

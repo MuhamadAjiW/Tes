@@ -26,21 +26,11 @@ shape = SubResource( 1 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-margin_left = 15.0
+visible = false
 margin_top = 592.0
-margin_right = 1352.0
-margin_bottom = 755.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/ColorRect"]
-show_behind_parent = true
-margin_left = -7.0
-margin_top = -8.0
-margin_right = 1345.0
-margin_bottom = 168.0
-color = Color( 0, 0, 0, 1 )
+margin_right = 1368.0
+margin_bottom = 768.0
+color = Color( 0, 0, 0, 0.329412 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -51,7 +41,7 @@ margin_top = 8.0
 margin_right = 278.0
 margin_bottom = 61.0
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Placeholder"
 __meta__ = {
 "_edit_use_anchors_": false

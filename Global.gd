@@ -32,10 +32,6 @@ func _startcache():
 	caching = true
 
 func _resetcache():
-	if points > int(previous_points):
-		save(points)
-		previous_points = points
-	points = 0
 	caching = false
 	cached_max_energy = max_energy_default
 	cached_energy = max_energy_default
@@ -44,7 +40,6 @@ func _resetcache():
 
 func addpoints(x):
 	points += x
-	print(points)
 
 func save(score):
 	var file = File.new()
