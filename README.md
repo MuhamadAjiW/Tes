@@ -1,6 +1,6 @@
 # The Warrior of Whiteland
 
-Made around 2022
+Made around 2021 with horrendous code
 
 https://gataugatauaaa.itch.io/game-1
 
